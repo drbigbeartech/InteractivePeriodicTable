@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Chemistry Periodic Table</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>Interactive Chemistry Periodic Table</h1>
+            <div class="search-container">
+                <input type="text" id="elementSearch" class="form-control" placeholder="Search elements by name or symbol...">
+            </div>
+        </header>
+
+        <div class="main-content">
+            <div class="sidebar">
+                <div class="filters-section">
+                    <h3>Filters</h3>
+                    <div class="filter-group">
+                        <label class="form-label">Category:</label>
+                        <select id="categoryFilter" class="form-control">
+                            <option value="">All Categories</option>
+                            <option value="alkali metal">Alkali Metals</option>
+                            <option value="alkaline earth metal">Alkaline Earth Metals</option>
+                            <option value="transition metal">Transition Metals</option>
+                            <option value="halogen">Halogens</option>
+                            <option value="noble gas">Noble Gases</option>
+                            <option value="nonmetal">Non-metals</option>
+                        </select>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <label class="form-label">Group:</label>
+                        <select id="groupFilter" class="form-control">
+                            <option value="">All Groups</option>
+                        </select>
+                    </div>
+
+                    <div class="filter-group">
+                        <label class="form-label">Period:</label>
+                        <select id="periodFilter" class="form-control">
+                            <option value="">All Periods</option>
+                            <option value="1">Period 1</option>
+                            <option value="2">Period 2</option>
+                            <option value="3">Period 3</option>
+                            <option value="4">Period 4</option>
+                            <option value="5">Period 5</option>
+                            <option value="6">Period 6</option>
+                            <option value="7">Period 7</option>
+                        </select>
+                    </div>
+
+                    <div class="filter-group">
+                        <label class="form-label">State:</label>
+                        <select id="stateFilter" class="form-control">
+                            <option value="">All States</option>
+                            <option value="solid">Solid</option>
+                            <option value="liquid">Liquid</option>
+                            <option value="gas">Gas</option>
+                        </select>
+                    </div>
+
+                    <button id="clearFilters" class="btn btn--secondary btn--sm">Clear Filters</button>
+                </div>
+
+                <div class="legend-section">
+                    <h3>Element Categories</h3>
+                    <div class="legend">
+                        <div class="legend-item">
+                            <div class="legend-color alkali-metal"></div>
+                            <span>Alkali Metals</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color alkaline-earth-metal"></div>
+                            <span>Alkaline Earth Metals</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color transition-metal"></div>
+                            <span>Transition Metals</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color halogen"></div>
+                            <span>Halogens</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color noble-gas"></div>
+                            <span>Noble Gases</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color nonmetal"></div>
+                            <span>Non-metals</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="periodic-table-container">
+                <div id="periodicTable" class="periodic-table">
+                    <!-- Periodic table will be generated here -->
+                </div>
+            </div>
+
+            <div class="info-panel" id="infoPanel">
+                <div class="info-panel-header">
+                    <h2>Element Information</h2>
+                    <button id="closeInfo" class="btn btn--secondary btn--sm">×</button>
+                </div>
+                <div class="info-content" id="infoContent">
+                    <p>Click on an element to see detailed information here.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="educational-section">
+            <div class="tabs">
+                <button class="tab-button active" data-tab="trends">Periodic Trends</button>
+                <button class="tab-button" data-tab="reactions">Reaction Types</button>
+                <button class="tab-button" data-tab="detection">Detection Methods</button>
+                <button class="tab-button" data-tab="groups">Group Properties</button>
+            </div>
+
+            <div class="tab-content active" id="trends">
+                <h3>Periodic Trends</h3>
+                <div class="trends-grid">
+                    <div class="trend-item">
+                        <h4>Atomic Radius</h4>
+                        <p>Decreases across a period (left to right), increases down a group</p>
+                    </div>
+                    <div class="trend-item">
+                        <h4>Ionization Energy</h4>
+                        <p>Increases across a period, decreases down a group</p>
+                    </div>
+                    <div class="trend-item">
+                        <h4>Electronegativity</h4>
+                        <p>Increases across a period, decreases down a group</p>
+                    </div>
+                    <div class="trend-item">
+                        <h4>Metallic Character</h4>
+                        <p>Decreases across a period, increases down a group</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-content" id="reactions">
+                <h3>Common Reaction Types</h3>
+                <div id="reactionTypes">
+                    <!-- Will be populated by JavaScript -->
+                </div>
+            </div>
+
+            <div class="tab-content" id="detection">
+                <h3>Element Detection Methods</h3>
+                <div id="detectionMethods">
+                    <!-- Will be populated by JavaScript -->
+                </div>
+            </div>
+
+            <div class="tab-content" id="groups">
+                <h3>Group Properties</h3>
+                <div id="groupProperties">
+                    <!-- Will be populated by JavaScript -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
